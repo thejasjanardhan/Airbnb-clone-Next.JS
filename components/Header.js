@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/solid";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { DateRangePicker } from "react-date-range";
+import { DateRange, DateRangePicker } from "react-date-range";
 import { useRouter } from "next/dist/client/router";
 
 function Header({ placeholder }) {
@@ -45,7 +45,7 @@ function Header({ placeholder }) {
     key: "selection",
   };
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white overflow-x-hidden shadow-md py-5 px-5 md:px-10">
+    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md py-5 px-5 md:px-10">
       {/*left*/}
       <div
         onClick={() => router.push("/")}
@@ -82,13 +82,23 @@ function Header({ placeholder }) {
       </div>
       {searchInput && (
         <div className="col-span-3 mx-auto">
-          <div className="flex flex-col w-5/6 sm:w-full md:w-full lg:w-full xl:w-full shadow-md border">
-            <DateRangePicker
-              ranges={[selectionRange]}
-              minDate={new Date()}
-              rangeColors={["#FD5861"]}
-              onChange={handleSelect}
-            />
+          <div className="flex flex-col w-auto shadow-md border">
+            <div className="hidden sm:flex">
+              <DateRangePicker
+                ranges={[selectionRange]}
+                minDate={new Date()}
+                rangeColors={["#FD5861"]}
+                onChange={handleSelect}
+              />
+            </div>
+            <div className="flex sm:hidden">
+              <DateRange
+                ranges={[selectionRange]}
+                minDate={new Date()}
+                rangeColors={["#FD5861"]}
+                onChange={handleSelect}
+              />
+            </div>
             <div className="flex items-center border-b mb-4">
               <h2 className="text-2xl flex-grow font-semibold pl-2 ">
                 Number of Guests
