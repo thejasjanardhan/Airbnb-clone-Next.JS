@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useRouter } from "next/dist/client/router";
@@ -15,6 +16,12 @@ function Search({ searchResults }) {
   const range = ` ${formatedStartDate} - ${formatedEndDate}`;
   return (
     <div>
+      <Head>
+        <title>
+          Airbnb | {`${location} | ${range} | ${noOfGuests} guests`}
+        </title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header placeholder={`${location} | ${range} | ${noOfGuests} guests`} />
       <main className="flex">
         <section className="flex-grow pt-14 px-6">
